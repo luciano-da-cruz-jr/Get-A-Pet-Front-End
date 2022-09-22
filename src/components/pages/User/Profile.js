@@ -11,6 +11,7 @@ import useFlashMessage from '../../../hooks/useFlashMessage'
 
 function Profile() {
     const [user, setUser] = useState({})
+    const [preview, setPreview] = useState('')
     const [token] = useState(localStorage.getItem('token') || '')
     const { setFlashMessage } = useFlashMessage()
 
@@ -31,7 +32,8 @@ function Profile() {
     }
     
     function onFileChange(e) {
-        setUser({ ...user, [e.target.name]: e.target.files[0] })
+      setPreview(e.target.files[0])
+      setUser({ ...user, [e.target.name]: e.target.files[0] })
     }
 
     const handleSubmit = async (e) => {
@@ -67,7 +69,13 @@ function Profile() {
         <section>
             <div className={styles.profile_header}>
                 <h1>Perfil</h1>
-                <p>Preview Image</p>
+                {(user.image || preview) && (
+                  <img src={ preview ? URL.createObjectURL(preview)
+                    : `${process.env.REACT_APP_API}/images/users/${user.image}`
+                  }
+                  alt={user.name}
+                  />
+        )}
             </div>
             <form onSubmit={handleSubmit} className={formStyles.form_container}>
             <Input
