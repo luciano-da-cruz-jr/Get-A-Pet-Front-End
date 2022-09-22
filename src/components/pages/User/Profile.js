@@ -1,6 +1,7 @@
 import api from '../../../utils/api'
 
 import Input from '../../form/Input'
+import RoundedImage from '../../layout/RoundedImage'
 
 import { useState, useEffect } from 'react'
 
@@ -70,7 +71,7 @@ function Profile() {
             <div className={styles.profile_header}>
                 <h1>Perfil</h1>
                 {(user.image || preview) && (
-                  <img src={ preview ? URL.createObjectURL(preview)
+                  <RoundedImage src={ preview ? URL.createObjectURL(preview)
                     : `${process.env.REACT_APP_API}/images/users/${user.image}`
                   }
                   alt={user.name}
