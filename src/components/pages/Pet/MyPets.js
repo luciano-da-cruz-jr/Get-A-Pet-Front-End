@@ -37,7 +37,7 @@ function MyPets() {
             },
         })
         .then((response) => {
-            const updatedPets = pets.filter((pet) => pet._id != id)
+            const updatedPets = pets.filter((pet) => pet._id !== id)
             setPets(updatedPets)
             return response.data
         })
@@ -67,14 +67,15 @@ function MyPets() {
                             />
                             <span className="bold">{pet.name}</span>
                             <div className={styles.actions}>
-                                {pet.available ? 
-                                (<>
-                                    {pet.adopter && (
-                                        <button className={styles.conclude_btn}>
-                                            Concluir adoção
-                                        </button>
-                                    )}
-                                    <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
+                                {pet.available ? (
+                                    <>
+                                        {pet.adopter && (
+                                            <button 
+                                                className={styles.conclude_btn}>
+                                                Concluir adoção
+                                            </button>
+                                        )}
+                                        <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
                                     <button
                                         onClick={() => {
                                             removePet(pet._id)
@@ -82,8 +83,8 @@ function MyPets() {
                                     >
                                         Excluir
                                     </button>
-                                </>) 
-                                : <p>Pet já adotado</p>}
+                                </>
+                                ) : (<p>Pet já adotado</p>)}
                             </div>
                         </div>
                 ))}
