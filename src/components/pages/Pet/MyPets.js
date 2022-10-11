@@ -29,14 +29,14 @@ function MyPets() {
 
     return (
         <section>
-            <h1>MyPets</h1>
-            <div>
+            <div className={styles.petslist_header}>
+                <h1>MyPets</h1>
                 <Link to="/pet/add">Cadastrar Pet</Link>
             </div>
-            <div>
+            <div className={styles.petslist_container}>
                 {pets.length > 0 &&
                     pets.map((pet) => (
-                        <div key={pet._id}>
+                        <div className={styles.petlist_row} key={pet._id}>
                             <RoundedImage
                                 src={`${process.env.REACT_APP_API}/images/pets/${pet.images[0]}`}
                                 alt={pet.name}
@@ -47,7 +47,9 @@ function MyPets() {
                                 {pet.available ? 
                                 (<>
                                     {pet.adopter && (
-                                        <button>Concluir adoção</button>
+                                        <button className={styles.conclude_btn}>
+                                            Concluir adoção
+                                        </button>
                                     )}
                                     <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
                                     <button>Excluir</button>
