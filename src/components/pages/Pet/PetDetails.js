@@ -21,6 +21,29 @@ function PetDetails() {
     })
   }, [id])
 
+  async function schedule() {
+    let msgType = 'success'
+
+    const data = await api({
+      method:'patch',
+      url:`pets/schedule/${pet._id}`,
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`,
+      }
+    })
+    .then((response) => {
+        //console.log(response.data)
+        return response.data
+    })
+    .catch((err) => {
+        //console.log(err)
+        msgType = 'error'
+        return err.response.data
+    })
+
+    setFlashMessage(data.message, msgType)
+  }
+
   return (
     <>
     {pet.name && (
@@ -45,7 +68,7 @@ function PetDetails() {
           <span className="bold">Idade:</span> {pet.age} anos
         </p>
         {token ? (
-          <button>Solicitar uma Visita</button>
+          <button onClick={schedule}>Solicitar uma Visita</button>
         ) : (
           <p>
             Você precisa <Link to="/register">criar uma conta</Link> para
