@@ -24,7 +24,7 @@ function PetDetails() {
   return (
     <>
     {pet.name && (
-      <section className={styles.pet_details_container}>
+      <section className={styles.pet_details_container}> 
         <div className={styles.petdetails_header}>
           <h1>Conhecendo o Pet: {pet.name}</h1>
           <p>Se tiver interesse, marque uma visita para conhecê-lo!</p>
