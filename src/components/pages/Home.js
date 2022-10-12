@@ -26,8 +26,13 @@ function Home() {
             <div className={styles.pet_container}>
                 {pets.length > 0 && 
                     pets.map((pet) => (
-                        <div>
-                            <p>Imagm do Pet</p>
+                        <div className={styles.pet_card}>
+                            <div
+                                style={{
+                                backgroundImage: `url(${process.env.REACT_APP_API}/images/pets/${pet.images[0]})`,
+                                }}
+                                className={styles.pet_card_image}
+                            ></div>
                             <h3>{pet.name}</h3>
                             <p>
                                 <span className="bold">Peso:</span> {pet.weight}kg
